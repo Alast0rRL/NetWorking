@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Edit Note</h1>
+<form method="post">
+    {{ form.hidden_tag() }}
+    {{ form.content.label }}
+    {{ form.content(size=32) }}
+    {{ form.submit() }}
+</form>
+{% endblock %}

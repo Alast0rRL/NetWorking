@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>People</h1>
+<form method="get" action="{{ url_for('index') }}">
+    <input type="text" name="search" placeholder="Search">
+    <input type="submit" value="Search">
+</form>
+<ul>
+    {% for person in people %}
+        <li>
+            <a href="{{ url_for('person_detail', person_id=person.id) }}">{{ person.name }}</a>
+            <a href="{{ url_for('delete_person', person_id=person.id) }}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

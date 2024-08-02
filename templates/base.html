@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People Database</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="logo.png" alt="Logo" class="mr-2">
+                <h1 class="my-0">People Database</h1>
+            </div>
+            <form method="get" action="{{ url_for('index') }}" class="form-inline">
+                <input type="text" name="search" class="form-control mr-2" placeholder="Search">
+                <button type="submit" class="btn btn-light">Search</button>
+            </form>
+            <div>
+                <button class="btn btn-success">Technical Support</button>
+                <button class="btn btn-warning">Cart</button>
+                <button class="btn btn-dark">Login</button>
+            </div>
+        </div>
+    </header>
+    <nav class="bg-dark py-2">
+        <div class="container d-flex justify-content-around">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Market</a>
+            <a href="{{ url_for('add_person') }}" class="btn btn-secondary">Trade Platform</a>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-start">
+            <div class="mr-4">
+                <button class="btn btn-danger mb-2">Add Product</button>
+                <button class="btn btn-danger mb-2">Add User</button>
+                <button class="btn btn-danger mb-2">Top Up Balance</button>
+                <button class="btn btn-danger mb-2">Withdraw Funds</button>
+            </div>
+            <div class="flex-fill">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
