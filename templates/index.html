@@ -1,10 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>People</h1>
-<form method="get" action="{{ url_for('index') }}">
-    <input type="text" name="search" placeholder="Search">
-    <input type="submit" value="Search">
-</form>
 <ul>
     {% for person in people %}
         <li>

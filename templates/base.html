@@ -1,51 +1,70 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>People Database</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Цифровой рынок аккаунтов</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
 </head>
 <body>
-    <header class="bg-dark text-white text-center py-2">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <img src="logo.png" alt="Logo" class="mr-2">
-                <h1 class="my-0">People Database</h1>
+    <header>
+        <div class="up">
+            <img src="static\img\main\logo.png" class="logo" alt="Описание изображения">
+            <div class="block_up">
+                <a class="button_up" href="{{ url_for('index') }}">Home</a>
+                <button class="button_up">Торговая площадка</button>
+                <form action="/search" method="POST" class="search-container">
+                    <input type="text" name="query" placeholder="Поиск" class="search-button">
+                </form>
+                    <a class="help button_up" href="{{ url_for('add_person') }}">Add Person</a>
+                <form action="/basket" method="post">
+                    <button class="button_up basket">Корзина</button>
+                </form>
             </div>
-            <form method="get" action="{{ url_for('index') }}" class="form-inline">
-                <input type="text" name="search" class="form-control mr-2" placeholder="Search">
-                <button type="submit" class="btn btn-light">Search</button>
+            <form action="/login" method="post">
+                <a href="/login" class="login">{{username}}<br>{{balance}}Р</a>
             </form>
-            <div>
-                <button class="btn btn-success">Technical Support</button>
-                <button class="btn btn-warning">Cart</button>
-                <button class="btn btn-dark">Login</button>
-            </div>
+            <img src="static\img\main\ava.png" class="ava" alt="Описание изображения">
         </div>
     </header>
-    <nav class="bg-dark py-2">
-        <div class="container d-flex justify-content-around">
-            <a href="{{ url_for('index') }}" class="btn btn-secondary">Market</a>
-            <a href="{{ url_for('add_person') }}" class="btn btn-secondary">Trade Platform</a>
-        </div>
-    </nav>
-    <div class="container mt-4">
-        <div class="d-flex justify-content-start">
-            <div class="mr-4">
-                <button class="btn btn-danger mb-2">Add Product</button>
-                <button class="btn btn-danger mb-2">Add User</button>
-                <button class="btn btn-danger mb-2">Top Up Balance</button>
-                <button class="btn btn-danger mb-2">Withdraw Funds</button>
-            </div>
-            <div class="flex-fill">
-                {% block content %}{% endblock %}
-            </div>
-        </div>
+
+
+
+<div class="lmenu main">
+    <form action="/create-tovar-page" method="post">
+        <button class="button button_lmenu">Добавить человека</button>
+    </form>
+    <form action="/create-user-page" method="post">
+        <button class="button button_lmenu">Добавить пользователя</button>
+    </form>
+    <form action="/money" method="post">
+        <button class="button button_lmenu">Пополнить баланс</button>
+    </form>
+    <form action="/help" method="get">
+        <button class="button button_lmenu">Вывести средства</button>
+    </form>
+
+
+
+</div>
+{% for msg in get_flashed_messages() %}
+    <div class="flash">{{msg}}</div>
+{% endfor %}
+
+<main>
+    <h2 class="title">Люди</h2>
+    <div class="container">
+        {% block content %}{% endblock %}
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</main>
+
+<!-- <footer>
+    <div class="foot">
+        <h2 class="title">RedLine Market 2024</h2>
+    </div>
+</footer> -->
+
 </body>
 </html>
