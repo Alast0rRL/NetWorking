@@ -34,11 +34,17 @@ def person_detail(person_id):
 def add_person():
     form = PersonForm()
     if form.validate_on_submit():
-        new_person = Person(name=form.name.data)
+        # Создаем нового персонажа с данными из формы
+        new_person = Person(
+            name=form.name.data,
+            age=form.age.data,  # Поле может быть None
+            main_info=form.main_info.data
+        )
         db.session.add(new_person)
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('add_person.html', form=form)
+
 
 @app.route('/delete_person/<int:person_id>')
 def delete_person(person_id):
