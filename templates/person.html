@@ -1,20 +1,143 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1>{{ person.name }}</h1>
-<h2>Notes</h2>
-<ul>
-    {% for note in person.notes %}
-        <li>
-            {{ note.content }}
-            <a href="{{ url_for('edit_note', note_id=note.id) }}">Edit</a>
-            <a href="{{ url_for('delete_note', note_id=note.id) }}">Delete</a>
-        </li>
-    {% endfor %}
-</ul>
-<form method="post">
-    {{ form.hidden_tag() }}
-    {{ form.content.label }}
-    {{ form.content(size=32) }}
-    {{ form.submit() }}
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали персонажа</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        // Функция для включения редактирования контента заметки
+        function enableEdit(noteId) {
+            event.preventDefault(); // Предотвращаем стандартное поведение
+            var noteContent = document.getElementById('note-content-' + noteId);
+            var editButton = document.getElementById('edit-button-' + noteId);
+            var saveButton = document.getElementById('save-button-' + noteId);
+
+            noteContent.contentEditable = true;
+            noteContent.style.border = "1px solid #ccc";
+            editButton.style.display = 'none';
+            saveButton.style.display = 'inline-block';
+        }
+
+        // Функция для сохранения отредактированной заметки
+        function saveEdit(noteId) {
+            event.preventDefault(); // Предотвращаем стандартное поведение
+            var noteContent = document.getElementById('note-content-' + noteId);
+            var saveButton = document.getElementById('save-button-' + noteId);
+            var editButton = document.getElementById('edit-button-' + noteId);
+
+            // Отправка обновленного контента на сервер с помощью AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{{ url_for('edit_note') }}", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}");  // CSRF токен для безопасности
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    noteContent.contentEditable = false;
+                    noteContent.style.border = "none";
+                    editButton.style.display = 'inline-block';
+                    saveButton.style.display = 'none';
+                } else if (xhr.readyState === 4) {
+                    alert("Ошибка при сохранении заметки: " + xhr.statusText);
+                }
+            };
+
+            xhr.send("note_id=" + noteId + "&content=" + encodeURIComponent(noteContent.innerText));
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='img/main/logo.png') }}" class="logo" alt="Описание изображения">
+        <div class="block_up">
+            <a class="button_up" href="{{ url_for('index') }}">Home</a>
+            <a class="help button_up" href="{{ url_for('add_person') }}">Add Person</a>                 
+        </div>
+        <form action="/search">
+            <input type="text" name="query" placeholder="Поиск" class="search-button">
+        </form>
+        <img src="{{ url_for('static', filename='img/main/ava.png') }}" class="ava" alt="Описание изображения">
+    </header>
+
+    <div class="lmenu main">
+        <form action="/create-tovar-page" method="post">
+            <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
+        </form>
+        <form action="/create-user-page" method="post">
+            <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
+        </form>
+        <form action="/money" method="post">
+            <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
+        </form>
+        <form action="/help" method="get">
+            <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
+        </form>
+    </div>
+
+    <main>
+        <h2 class="title">Основная информация</h2>
+        <div class="person-block">
+            {% if person.photo %}
+                <img class="person-photo2" src="{{ url_for('static', filename='uploads/' + person.photo) }}" alt="Profile Picture">
+            {% else %}
+                <img class="person-photo2" src="{{ url_for('static', filename='uploads/default.png') }}" alt="Profile Picture">
+            {% endif %}
+
+            <div class="person-info">
+                <div class="person-details">
+                    <div class="person-info-left">
+                        <p class="person-main-info">Имя: {{ person.name }}</p>
+                        <p class="person-main-info">Возраст: {{ person.age }}</p>
+                        <p class="person-main-info">Main Info: {{ person.main_info }}</p>
+                        <p class="person-main-info">Телефон: {{ person.phone_number }}</p>
+                        <p class="person-main-info">Адрес: {{ person.address }}</p>
+                        <p class="person-main-info">Теги: {{ person.tags }}</p>
+
+                    </div>
+                </div>
+                <div class="person-buttons">
+                    <a class="basket delete-button" href="{{ url_for('edit_person', person_id=person.id) }}">Edit</a>
+                    <a class="delete delete-button" href="{{ url_for('delete_person', person_id=person.id) }}">Delete</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Заметки -->
+        <h3 class="title">Заметки</h3>
+        <div class="notes-container">
+            {% for note in person.notes %}
+                <div class="note-column">
+                    <div id="note-content-{{ note.id }}" class="note-content">
+                        <p>{{ note.content }}</p>
+                    </div>
+                    <div class="note-actions">
+                        <button id="edit-button-{{ note.id }}" class="basket delete-button" onclick="enableEdit({{ note.id }})">Edit</button>
+                        <button id="save-button-{{ note.id }}" class="basket delete-button" onclick="saveEdit({{ note.id }})" style="display: none;">Save</button>
+                        <a class="delete delete-button" href="{{ url_for('delete_note', note_id=note.id) }}">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Добавление новой заметки -->
+        <form action="{{ url_for('person_detail', person_id=person.id) }}" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <h4>Содержание новой заметки</h4>
+                {{ form.content(class="form-textarea") }}
+                {% if form.content.errors %}
+                    <div class="error-message">{{ form.content.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="submit-button") }}
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <!-- Элементы подвала -->
+    </footer>
+</body>
+</html>

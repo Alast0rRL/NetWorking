@@ -3,51 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Цифровой рынок аккаунтов</title>
+    <title>База данных</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 </head>
 <body>
     <header>
-        <div class="up">
-            <img src="static\img\main\logo.png" class="logo" alt="Описание изображения">
+        <img src="static\img\main\logo.png" class="logo" alt="Описание изображения">
             <div class="block_up">
                 <a class="button_up" href="{{ url_for('index') }}">Home</a>
-                <button class="button_up">Торговая площадка</button>
-                <form action="/search" class="search-container">
+                <a class="help button_up" href="{{ url_for('add_person') }}">Add Person</a>                 
+            </div>
+                <form action="/search">
                     <input type="text" name="query" placeholder="Поиск" class="search-button">
                 </form>
-                    <a class="help button_up" href="{{ url_for('add_person') }}">Add Person</a>
-                <form action="/basket">
-                    <button class="button_up basket">Корзина</button>
-                </form>
-            </div>
-            <form action="/login">
-                <a href="/login" class="login"><br>Р</a>
-            </form>
+                
             <img src="static\img\main\ava.png" class="ava" alt="Описание изображения">
-        </div>
     </header>
 
 
 
 <div class="lmenu main">
     <form action="/create-tovar-page" method="post">
-        <button class="button button_lmenu">Добавить человека</button>
+        <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
     </form>
     <form action="/create-user-page" method="post">
-        <button class="button button_lmenu">Добавить пользователя</button>
+        <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
     </form>
     <form action="/money" method="post">
-        <button class="button button_lmenu">Пополнить баланс</button>
+        <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
     </form>
     <form action="/help" method="get">
-        <button class="button button_lmenu">Вывести средства</button>
+        <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
     </form>
-
-
-
 </div>
 {% for msg in get_flashed_messages() %}
     <div class="flash">{{msg}}</div>
@@ -55,23 +44,39 @@
 
 <main>
     <h2 class="title">Люди</h2>
-        {% for person in people %}
-        <div class="block">
-            <div class="str_1">
-                <a class="date" href="{{ url_for('person_detail', person_id=person.id) }}">{{ person.name }}</a>
-                <p class="price">{{person.age}}</p>
-            </div>
-            <div class="str_1">
-                <p class="date">Info:{{person.main_info}} </p>
-                    <a class="button"href="{{ url_for('delete_person', person_id=person.id) }}">Delete</a>
-                </form>
-            </div>
+    {% for person in people %}
+    <a href="{{ url_for('person_detail', person_id=person.id) }}" class="person-link">
+        <div class="person-block">
+            {% if person.photo %}
+                <img class="person-photo" src="{{ url_for('static', filename='uploads/' + person.photo) }}" alt="Profile Picture">
+            {% else %}
+                <img class="person-photo" src="{{ url_for('static', filename='uploads/default.png') }}" alt="Profile Picture">
+            {% endif %}
 
-                
-            
+            <div class="person-info">
+                <div class="person-details">
+                    <div class="person-info-left">
+                        <p class="person-name">Имя: {{ person.name }}</p>
+                        <p class="person-age">Возраст: {{ person.age }}</p>
+                        <p class="person-main-info">Информация:{{ person.main_info }}</p>
+                    </div>
+                    <div class="person-info-right">
+                        <p class="person-phone">Телефон: {{ person.phone_number }}</p>
+                        <p class="person-address">Адрес: {{ person.address }}</p>
+                    </div>
+                </div>
+                <div class="person-buttons">
+                    <a class="help delete-button" href="{{ url_for('person_detail', person_id=person.id) }}">Add Note</a>
+                    <a class="basket delete-button" href="{{ url_for('edit_person', person_id=person.id) }}">Edit</a>
+                    <a class="delete delete-button" href="{{ url_for('delete_person', person_id=person.id) }}">Delete</a>
+                </div>
+            </div>
         </div>
-        {% endfor %}
+    </a>
+    {% endfor %}
 </main>
+
+
 
 <!-- <footer>
     <div class="foot">

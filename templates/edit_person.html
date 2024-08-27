@@ -5,30 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Редактировать Персону</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
     <header>
-        <!-- Include your header here -->
+        <img src="{{ url_for('static', filename='img/main/logo.png') }}" class="logo" alt="Описание изображения">
+            <div class="block_up">
+                <a class="button_up" href="{{ url_for('index') }}">Home</a>
+                <a class="help button_up" href="{{ url_for('add_person') }}">Add Person</a>                 
+            </div>
+                <form action="/search">
+                    <input type="text" name="query" placeholder="Поиск" class="search-button">
+                </form>
+                
+            <img src="{{ url_for('static', filename='img/main/ava.png') }}" class="ava" alt="Описание изображения">
     </header>
+
+
     <div class="lmenu main">
-        <form method="post">
-            {{ form.hidden_tag() }}
-            <div>
-                {{ form.name.label }}<br>
-                {{ form.name(size=32) }}
-            </div>
-            <div>
-                {{ form.age.label }}<br>
-                {{ form.age(size=32) }}
-            </div>
-            <div>
-                {{ form.main_info.label }}<br>
-                {{ form.main_info(size=32) }}
-            </div>
-            <div>
-                {{ form.submit() }}
-            </div>
+        <form action="/create-tovar-page" method="post">
+            <button class="button button_lmenu">Добавить человека</button>
+        </form>
+        <form action="/create-user-page" method="post">
+            <button class="button button_lmenu">Добавить пользователя</button>
+        </form>
+        <form action="/money" method="post">
+            <button class="button button_lmenu">Пополнить баланс</button>
+        </form>
+        <form action="/help" method="get">
+            <button class="button button_lmenu">Вывести средства</button>
         </form>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <main>
+        <h2>Редактировать Персону</h2>
+        <form action="{{ url_for('edit_person', person_id=person.id) }}" method="POST" enctype="multipart/form-data" class="person-form">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                <label class="form-label" for="name">Имя:</label>
+                {{ form.name(class="form-input") }}
+                {% if form.name.errors %}
+                    <div class="error-message">{{ form.name.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="age">Возраст:</label>
+                {{ form.age(class="form-input") }}
+                {% if form.age.errors %}
+                    <div class="error-message">{{ form.age.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="main_info">Основная информация:</label>
+                {{ form.main_info(class="form-textarea") }}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="photo">Фотография:</label>
+                {{ form.photo(class="form-input") }}
+                {% if form.photo.errors %}
+                    <div class="error-message">{{ form.photo.errors[0] }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" class="submit-button" value="Сохранить изменения">
+            </div>
+        </form>
+    </main>
+    
 </body>
 </html>

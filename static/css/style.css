@@ -5,14 +5,6 @@
     /* Дополнительные настройки, такие как начертание и жирность, могут быть добавлены здесь */
 }
 
-
-
-
-
-
-
-
-
 body{
     margin: 0;
     padding: 0;
@@ -27,10 +19,6 @@ body{
     background-size: cover;
 }
 
-
-
-
-
 header {
     background-color: #232323;
     color: white;
@@ -43,60 +31,49 @@ header {
     z-index: 5; /* Устанавливаем очень высокий z-index */
 }
 
-
-footer{
-    position: fixed;
-    bottom: 0%;
-    width: 100%;
-    line-height: 0px;
-    margin-top: auto;
-    width: 100%;
-    height: 100px; /* Замените это на желаемую высоту вашего footer */
-    background-color: #232323;
+main{
+    font-family: 'Gang of Three[RUS by Daymarius]';
+    background-color: rgba(35, 35, 35, 0.95); /* Цвет #232323 с 50% прозрачности */
     color: white;
-    height: 100px;
-    padding: 0px;
-    bottom: 0;
-    left: 0;
-    width: 100%; /* чтобы растянуть footer по всей ширине экрана */
-    top: 0;
-    left: 0;
-    width: 100%; /* чтобы растянуть header по всей ширине экрана */
-    z-index: 5; /* Устанавливаем очень высокий z-index */
+    height: auto;
+    padding: 0px 15px;
+    text-align: left;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-left: 450px;
+    width: 1200px;
+    
+    border: 2px solid #989898;
+    position: relative;
+    top: 125px;
+    margin-right: auto;
 }
 
+form {
+    display: inline-block; /* или inline */
+}
 
+.title{
+    font-family: 'Gang of Three[RUS by Daymarius]';
+    text-align: center;
+    padding-top: 20px;
+}
 
 
 .logo {
-    position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 15px;
+    left: 125px;
     width: 75px;
     height: 75px;
-}
-
-.up {
-    font-family: 'Gang of Three[RUS by Daymarius]', sans-serif;
     position: absolute;
-    margin-top: 15px;
-    margin-left: 7%;
-    margin-right: 7%;
-    height: 55px;
-    width: 1600px;
-    display: inline-flex;
-    
 }
 
-.block_up {
-    margin-left: 100px;
-    margin-top: 15px;
-    position: relative; /* Добавляем позиционирование относительно */
-}
 
-.search-container {
-    display: inline-block;
-    vertical-align: middle; /* Выравниваем вертикально по центру */
+.block_up{
+    position: absolute;
+    top: 30px;
+    left: 200px;
 }
 
 .button{
@@ -134,14 +111,14 @@ footer{
     cursor: pointer;
     transition: background-color 0.3s;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    margin-left: 25px;
     height: 40px;
     line-height: 40px;
     letter-spacing: 1px;
     margin-left: 25px;
-    margin-right: 25px;
     padding-left: 5px;
     padding-right: 5px;
+    position: static;
+    top: 10px;
 }
 
 
@@ -155,29 +132,19 @@ footer{
     font-size: 20px;
     cursor: pointer;
     border-radius: 15px;
-    margin-left: 25px;
-    margin-right: 25px;
-    width: 375px;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    display: inline-block; /* или inline */
     height: 40px;
     line-height: 40px;
     letter-spacing: 1px;
-    margin-bottom: 7px;
-}
-
-.knopka {
     position: absolute;
-    left: 915px;
-    margin-top: 7px;
-    background-color: #232323;
-    font-family: 'VAG World';
-    border-radius: 10px;
-    padding: 0px 5px;
-    color: white;
-    border: none;
+    top: 30px;
     
 }
+
+
 
 .help{
     background: linear-gradient(90deg, rgba(92, 194, 33, 0.75) 0%, rgba(72, 190, 108, 0.75) 100%);
@@ -185,28 +152,13 @@ footer{
 .basket{
     background: linear-gradient(90deg, rgba(255, 251, 35, 0.76) 0%, rgba(231, 195, 35, 0.75) 100%);
 }
-
-.login {
-    font-family: 'Gang of Three[RUS by Daymarius]';
-    text-align: center;
-    line-height: 1.5;
-    position: absolute;
-    margin-right: 25px;
-    right: 0px;
-    margin-top: 15px;
-    letter-spacing: 1px;
-    color: white;
-    background-color: #232323;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-
+.delete{
+    background: linear-gradient(90deg, rgba(255, 45, 45, 0.75) 0%, rgba(242, 91, 91, 0.75) 100%);    
 }
 
 .ava {
     position: absolute;
-    top: 0px;
+    top: 15px;
     left: 1600px;
     width: 75px;
     height: 75px;
@@ -214,35 +166,6 @@ footer{
 
 .market-button:hover {
     background-color: #ff7167;
-}
-
-
-.title{
-    position: relative;
-    text-align: center;
-    line-height: 20px;
-    padding-bottom: 10px;
-    top: 15px;
-}
-
-
-main{
-    font-family: 'Gang of Three[RUS by Daymarius]';
-    background-color: rgba(35, 35, 35, 0.95); /* Цвет #232323 с 50% прозрачности */
-    color: white;
-    height: auto;
-    padding: 0px 15px;
-    text-align: left;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 15px;
-    margin-left: 450px;
-    width: 1200px;
-    padding-bottom:100px ;
-    border: 2px solid #989898;
-    position: relative;
-    top: 125px;
-    margin-right: auto;
 }
 
 .block{
@@ -258,42 +181,7 @@ main{
     margin-bottom: 50px;
     border: 2px solid #989898;
 }
-.str_1 {
-    display: flex;
-    flex-direction: row;
-    letter-spacing: 1px;
 
-}
-
-.price {
-    margin-left: auto;
-    margin-right: 15px;
-    text-align: right;
-    letter-spacing: 1px;
-}
-
-
- .buy_button{
-    position:absolute;
-    display: flex;
-    height: 35px;
-    width: auto ;
-    margin-left: 925px;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
- }
-
-
- form {
-    display: inline-block; /* или inline */
-}
-
-.date{
-    margin-top: 16px;
-    color: white;
-    font-family: 'Gang of Three[RUS by Daymarius]';
-    text-decoration: none;
-}
 .lmenu{
     font-family: 'Gang of Three[RUS by Daymarius]';
     float: left;
@@ -321,11 +209,6 @@ main{
 .button_lmenu{
     width: 275px;
 }
-.title{
-    font-family: 'Gang of Three[RUS by Daymarius]';
-    text-align: center;
-    padding-top: 20px;
-}
 
 .flash {
     position: fixed;
@@ -346,70 +229,222 @@ main{
     z-index: 9;
 }
 
-.str{
-    display: flex;
-    flex-direction: row;
-    letter-spacing: 1px;
-    padding-top: 5px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Стили для ссылки, оборачивающей блок */
+.person-link {
+    display: block; /* Делает ссылку блочным элементом, чтобы она занимала всю ширину блока */
+    text-decoration: none; /* Убирает подчеркивание у ссылки */
+    color: inherit; /* Наследует цвет текста от родительских элементов */
 }
 
-.profile{
-    display: flex;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    line-height: 20px;
-    height: auto;
-    text-align: center;
-    align-items: center; /* Центрирование по вертикали */
-}
-
-/* Стиль для элементов формы */
-.form-group {
-    margin-bottom: 10px;    
-}
-
-.form-label {
-    display: block;
-    font-family: 'Gang of Three[RUS by Daymarius]';
-    font-size: 20px;
-    color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.form-input {
-    font-family: 'Gang of Three[RUS by Daymarius]';
-    background-color: #313131;
-    color: #989898;
-    padding: 10px;
+/* Обертка для каждого блока персоны */
+.person-block {
+    display: flex; /* Используем Flexbox для размещения элементов в строку */
+    align-items: flex-start; /* Выравниваем элементы по верхнему краю */
+    margin-bottom: 20px; /* Отступ снизу для разделения блоков */
     border: 2px solid #989898;
-    border-radius: 15px;
-    font-size: 18px;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 10px; /* Отступ внутри блока */
+    border-radius: 10px; /* Скругленные углы */
+    background-color: #303030; /* Фоновый цвет блока */
+    transition: background-color 0.3s; /* Плавный переход фона при наведении */
 }
 
-.submit-button {
+/* Изменение фона при наведении */
+.person-link:hover .person-block {
+    background-color: #e0e0e0; /* Цвет фона при наведении */
+}
+
+/* Стили для изображения */
+.person-photo {
+    width: 200px; /* Ширина изображения */
+    height: 200px;
+    margin-right: 20px; /* Отступ справа от изображения */
+    border-radius: 8px; /* Скругленные углы изображения */
+}
+
+.person-photo2 {
+    width: auto; /* Ширина изображения */
+    height: 500px;
+    margin-right: 20px; /* Отступ справа от изображения */
+    border-radius: 8px; /* Скругленные углы изображения */
+}
+
+/* Стили для блока с информацией */
+.person-info {
+    flex: 1; /* Позволяет блоку с текстом занимать оставшееся пространство */
+}
+
+
+
+/* Стили для основной информации */
+
+
+
+
+
+
+
+
+
+
+/* Стили для кнопки удаления */
+.delete-button {
     font-family: 'Gang of Three[RUS by Daymarius]';
-    background: linear-gradient(90deg, rgba(255, 45, 45, 0.75) 0%, rgba(242, 91, 91, 0.75) 100%);
     color: white;
+    display: inline-flex;
     border-radius: 15px;
     border: none;
     font-size: 20px;
-    cursor: pointer;
     transition: background-color 0.3s;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    height: 40px;
     line-height: 40px;
     letter-spacing: 1px;
-    margin-top: 10px;
-    padding: 0px 15px;
-    text-align: center;
+    flex-direction: column;
+    padding: 0px 5px;
+    text-decoration: none;
+    
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Основные стили для контейнера формы */
+.form_container {
+    max-width: 600px; /* Максимальная ширина формы */
+    margin: 0 auto; /* Центрирование формы на странице */
+    padding: 20px; /* Внутренние отступы */
+    background-color: #333; /* Цвет фона формы (изменено на черный) */ 
+    border-radius: 8px; /* Скругленные углы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Тень для формы */
+}
+
+/* Стили для элементов формы */
+.person-form {
+    display: flex;
+    flex-direction: column; /* Располагаем элементы формы вертикально */
+}
+
+/* Стили для групп элементов формы */
+.form-group {
+    margin-bottom: 20px; /* Отступ снизу для каждой группы */
+    font-family: 'Gang of Three[RUS by Daymarius]';
+}
+
+/* Стили для меток */
+.form-label {
+    display: block; /* Отображение меток как блочные элементы */
+    font-size: 1em; /* Размер шрифта меток */
+    margin-bottom: 5px; /* Отступ снизу */
+    margin-top: 5px; /* Отступ сверху */
+    color: #fff; /* Цвет текста меток (изменено на белый) */
+}
+
+/* Стили для полей ввода и текстовых областей */
+.form-input, .form-textarea {
+    width: 1200px;
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #555; /* Граница полей (изменено на темно-серый) */
+    border-radius: 4px; /* Скругленные углы */
+    box-sizing: border-box; /* Включает границу и внутренние отступы в ширину элемента */
+    font-size: 1em; /* Размер шрифта */
+    color: #fff; /* Цвет текста (изменено на белый) */
+    background-color: #303030; /* Фоновый цвет блока */
+    font-family: 'Gang of Three[RUS by Daymarius]';
+    display: flex; /* Используем Flexbox для размещения элементов в строку */
+    align-items: flex-start; /* Выравниваем элементы по верхнему краю */
+    margin-bottom: 20px; /* Отступ снизу для разделения блоков */
+    border: 2px solid #989898;
+    padding: 10px; /* Отступ внутри блока */
+    border-radius: 10px; /* Скругленные углы */
+    background-color: #303030; /* Фоновый цвет блока */
+    transition: background-color 0.3s; /* Плавный переход фона при наведении */
+}
+
+/* Стили для текстовых областей */
+.form-textarea {
+    resize: vertical; /* Позволяет изменять размер только по вертикали */
+    min-height: 100px; /* Минимальная высота текстовой области */
+}
+
+/* Стили для сообщений об ошибках */
+.error-message {
+    color: #f00; /* Цвет текста сообщений об ошибках */
+    font-size: 0.9em; /* Размер шрифта */
+    margin-top: 5px; /* Отступ сверху */
+}
+
+/* Стили для кнопки отправки */
+.submit-button {
+    font-family: 'Gang of Three[RUS by Daymarius]';
+    background-color: #28a745; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста кнопки */
+    border: none; /* Убираем границу */
+    padding: 10px 20px; /* Внутренние отступы */
+    border-radius: 4px; /* Скругленные углы */
+    font-size: 1em; /* Размер шрифта */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    transition: background-color 0.3s; /* Плавный переход фона при наведении */
+}
+
+/* Стили для кнопки при наведении */
 .submit-button:hover {
-    background-color: #ff7167;
+    background-color: #218838; /* Темнее цвет фона при наведении */
+}
+
+
+
+.person{
+    display: flex; /* Используем Flexbox для размещения элементов в строку */
+    align-items: flex-start; /* Выравниваем элементы по верхнему краю */
+    margin-bottom: 20px; /* Отступ снизу для разделения блоков */
+    padding: 10px; /* Отступ внутри блока */
+    border-radius: 10px; /* Скругленные углы */
+    transition: background-color 0.3s; /* Плавный переход фона при наведении */
 }
 
 
@@ -437,3 +472,93 @@ main{
 
 
 
+
+
+.notes-container {
+    display: flex;
+    gap: 20px;
+}
+
+.note-column {
+    display: flex;
+    background-color: #303030; /* Фоновый цвет блока */
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    width: 500px;
+}
+
+.note-content {
+    margin-bottom: 10px;
+}
+
+.note-actions {
+    display: flex;
+    gap: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Для контейнера информации о человеке */
+.person-info {
+    display: flex;
+    flex-direction: column; /* Элементы располагаются в колонку */
+    justify-content: space-between;
+    width: 100%; /* Занимает всю ширину блока */
+}
+
+/* Для блока, который содержит текстовую информацию */
+.person-details {
+    display: flex;
+    justify-content: space-between; /* Две колонки рядом друг с другом */
+    width: 100%;
+    margin-top:20px;
+}
+
+/* Для левой колонки */
+.person-info-left,
+.person-info-right {
+    display: flex;
+    flex-direction: column;
+    width: 48%; /* Колонки занимают по половине пространства */
+}
+
+/* Общие стили для текстовых блоков */
+.person-info p {
+    margin: 10px 0; /* Отступы между параграфами */
+    font-size: 1em; /* Размер шрифта */
+    color: #ffffff; /* Цвет текста */
+}
+
+/* Стили для блока с кнопками */
+.person-buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start; /* Кнопки выровнены по левому краю */
+    gap: 10px; /* Отступы между кнопками */
+}

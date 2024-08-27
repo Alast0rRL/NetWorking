@@ -3,42 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Цифровой рынок аккаунтов</title>
+    <title>Добавить Персону</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <header>
-        <div class="up">
-            <img src="static\img\main\logo.png" class="logo" alt="Описание изображения">
+        <img src="static\img\main\logo.png" class="logo" alt="Описание изображения">
             <div class="block_up">
-                <button class="button_up">Маркет</button>
-                <button class="button_up">Торговая площадка</button>
-                <form action="/search" method="POST" class="search-container">
+                <a class="button_up" href="{{ url_for('index') }}">Home</a>
+                <a class="help button_up" href="{{ url_for('add_person') }}">Add Person</a>                 
+            </div>
+                <form action="/search">
                     <input type="text" name="query" placeholder="Поиск" class="search-button">
                 </form>
-                <form action="/help" method="get">
-                    <button class="help button_up">Техническая поддержка</button>
-                </form>
-                <form action="/basket" method="post">
-                    <button class="button_up basket">Корзина</button>
-                </form>
-            </div>
+                
             <img src="static\img\main\ava.png" class="ava" alt="Описание изображения">
-        </div>
     </header>
+
+    <div class="lmenu main">
+        <form action="/create-tovar-page" method="post">
+            <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
+        </form>
+        <form action="/create-user-page" method="post">
+            <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
+        </form>
+        <form action="/money" method="post">
+            <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
+        </form>
+        <form action="/help" method="get">
+            <a class="button button_lmenu" href="{{ url_for('add_person') }}">Добавить человека</a> 
+        </form>
+    </div>
+    <main>
+            <form action="{{ url_for('add_person') }}" method="POST" enctype="multipart/form-data" class="person-form">
+                {{ form.hidden_tag() }}
     
-        <div class="button_container">
-            <input type="submit" class="button" value="Создать" action="/create-user">
-                </form>
-            <form action="/" method="post">
-                <button class = "button" >Домой</button>
+                <div class="form-group">
+                    <label for="photo" class="form-label">Фотография:</label>
+                    {{ form.photo(class="form-input") }}
+                    {% if form.photo.errors %}
+                        <div class="error-message">{{ form.photo.errors[0] }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="form-label">Имя:</label>
+                    {{ form.name(class="form-input") }}
+                    {% if form.name.errors %}
+                        <div class="error-message">{{ form.name.errors[0] }}</div>
+                    {% endif %}
+                </div>
+    
+                <div class="form-group">
+                    <label for="age" class="form-label">Возраст:</label>
+                    {{ form.age(class="form-input") }}
+                    {% if form.age.errors %}
+                        <div class="error-message">{{ form.age.errors[0] }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="phone_number" class="form-label">Номер телефона:</label>
+                    {{ form.phone_number(class="form-input") }}
+                </div>
+
+                <div class="form-group">
+                    <label for="address" class="form-label">Адрес:</label>
+                    {{ form.address(class="form-input") }}
+                </div>
+    
+                <div class="form-group">
+                    <label for="main_info" class="form-label">Основная информация:</label>
+                    {{ form.main_info(class="form-textarea") }}
+                </div>>
+
+                <div class="form-group">
+                    <label for="tags" class="form-label">Теги:</label>
+                    {{ form.tags(class="form-input") }}
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="submit-button" value="Создать">
+                </div>
             </form>
-        </div>
-    </div>  
-        <!-- <footer>
-            <div class="foot">
-                <h2 class="title">RedLine Market 2024</h2>
-            </div>
-        </footer> -->
+    </main>
+    
 </body>
 </html>
