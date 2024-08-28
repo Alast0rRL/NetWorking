@@ -210,23 +210,45 @@ form {
     width: 275px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .flash {
-    position: fixed;
-    margin-left: 20%;
-    margin-right: 20%;
-    color: white;
-    padding: 15px 15px;   
-    font-family: 'Gang of Three[RUS by Daymarius]';
-    background: linear-gradient(90deg, rgba(92, 194, 33, 0.75) 0%, rgba(72, 190, 108, 0.75) 100%);
-    color: #ffffff;
-    border: 2px solid #232323;
-    font-size: 50px;
-    border-radius: 15px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    line-height: 40px;
-    letter-spacing: 1px;
-    margin-top: -5%;
-    z-index: 9;
+    background-color: rgba(36, 65, 47, 0.95); /* Темный фон с прозрачностью */
+    color: white; /* Белый текст */
+    font-family: 'Gang of Three[RUS by Daymarius]'; /* Используемый шрифт */
+    padding: 20px; /* Внутренние отступы */
+    border: 2px solid #00a531; /* Серые границы */
+    border-radius: 15px; /* Скругленные углы */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /* Тень */
+    
+    font-size: 20px; /* Размер текста */
+    text-align: center; /* Текст по центру */
+    width: 50%; /* Ширина сообщения */
+    
+
+    position: fixed; /* Фиксированное позиционирование */
+    
+    margin-left:500px;
+    margin-top: 80px;
+
+    z-index: 1000; /* Поверх всех элементов */
 }
 
 

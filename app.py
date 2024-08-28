@@ -1,8 +1,9 @@
 import os
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from models import db, Person, Note
 from forms import PersonForm, NoteForm
 from werkzeug.utils import secure_filename
+from fuzzywuzzy import fuzz
 
 app = Flask(__name__)
 
@@ -19,14 +20,32 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+
+
 @app.route('/')
 def index():
-    search = request.args.get('search')
-    if search:
-        people = Person.query.filter(Person.name.like(f'%{search}%')).all()
-    else:
-        people = Person.query.all()
+    query = request.args.get('query')
+    people = Person.query.all()
+
+    if query:
+        query = query.lower()
+        filtered_people = []
+        for person in people:
+            person_data = f"{person.name} {person.age} {person.main_info} {person.phone_number} {person.address} {person.tags}".lower()
+            if fuzz.partial_ratio(query, person_data) > 60:
+                filtered_people.append(person)
+        
+        people = filtered_people
+
+        if people:
+            flash(f'Найдено {len(people)} результат(ов) по запросу "{query}".')
+        else:
+            flash(f'Результаты по запросу "{query}" не найдены.')
+
     return render_template('index.html', people=people)
+
+
+
 
 @app.route('/person/<int:person_id>', methods=['GET', 'POST'])
 def person_detail(person_id):
